@@ -24,7 +24,14 @@ async function registerSW() {
     throw new Error("Your browser doesn't support service workers.");
 
   // Ultraviolet has a stock `sw.js` script.
-  await navigator.serviceWorker.register(stockSW, {
+  // Pass a custom proxy server (set in Settings) to the service worker.
+  let swUrl = stockSW;
+  try {
+    const bare = localStorage.getItem("bareServer");
+    if (bare) swUrl += "?bare=" + encodeURIComponent(bare);
+  } catch (e) {}
+
+  await navigator.serviceWorker.register(swUrl, {
     scope: __uv$config.prefix,
   });
 }

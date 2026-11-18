@@ -1,0 +1,13 @@
+{
+  "name": "DM Unbl0cker",
+  "short_name": "DM Unbl0cker",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    { "src": "/img/logo.png", "sizes": "500x500", "type": "image/png", "purpose": "any" }
+  ]
+}
