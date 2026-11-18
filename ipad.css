@@ -1,0 +1,144 @@
+/* Shared tablet / touch tweaks (iPad, iPhone, Android tablets) */
+html, body {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a, button, img, input, select, li, .games, .apps, .appcont {
+  touch-action: manipulation; /* removes the 300ms double-tap-zoom delay */
+}
+
+@media (pointer: coarse) {
+  input, select, textarea {
+    font-size: max(16px, 1em); /* prevents iOS from zooming into focused fields */
+  }
+  input[type="text"] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+
+/* Scrollable lists: smooth momentum scrolling on iOS */
+.buttons {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* On touch screens hover never ends, so neutralise "sticky" hover effects */
+@media (hover: none) {
+  .chat:hover, .apps:hover, .games:hover, .discord:hover, .github:hover,
+  .settings:hover, .blank:hover {
+    filter: none !important;
+    box-shadow: none !important;
+  }
+  button.games:hover {
+    width: 155px !important;
+    height: 100px !important;
+  }
+  .chat:active, .apps:active, .discord:active, .github:active,
+  .settings:active, .blank:active, img.games:active {
+    opacity: 0.6 !important;
+  }
+  button.games:active {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+  }
+}
+
+/* ---------- Banner shown when the proxy server is unreachable ---------- */
+#dm-proxy-banner {
+  position: fixed;
+  left: 50%;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  max-width: min(92vw, 640px);
+  z-index: 2147483000;
+  background: rgba(20, 20, 20, 0.92);
+  color: #fff;
+  border: 2px solid #ff6b6b;
+  border-radius: 16px;
+  padding: 10px 14px;
+  font: 15px/1.35 Arial, sans-serif;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+#dm-proxy-banner a { color: #8ecbff; text-decoration: underline; cursor: pointer; }
+#dm-proxy-banner button {
+  margin-left: 8px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 14px;
+}
+
+/* ---------- On-screen game controls ---------- */
+#dm-touch-toggle {
+  position: fixed;
+  right: calc(12px + env(safe-area-inset-right));
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 26px;
+  line-height: 50px;
+  text-align: center;
+  z-index: 2147483001;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+#dm-touch-pad {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2147483000;
+  display: none;
+}
+#dm-touch-pad.on { display: block; }
+
+.dm-cluster {
+  position: absolute;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  pointer-events: none;
+}
+.dm-cluster.left { left: calc(24px + env(safe-area-inset-left)); width: 186px; height: 186px; }
+.dm-cluster.right {
+  right: calc(84px + env(safe-area-inset-right));
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.dm-key {
+  position: absolute;
+  width: 62px;
+  height: 62px;
+  border-radius: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font: bold 22px/58px Arial, sans-serif;
+  text-align: center;
+  pointer-events: auto;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.dm-cluster.right .dm-key { position: relative; width: 96px; font-size: 17px; }
+.dm-key.down { background: rgba(255, 255, 255, 0.45); }
+.dm-key.up    { left: 62px; top: 0; }
+.dm-key.left  { left: 0;    top: 62px; }
+.dm-key.right { left: 124px; top: 62px; }
+.dm-key.bottom{ left: 62px; top: 124px; }
+.dm-key.mode  { left: 62px; top: 62px; font-size: 13px; border-style: dashed; }

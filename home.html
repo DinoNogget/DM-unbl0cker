@@ -1,3 +1,6 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="/ipad.css">
+<script src="/ipad.js" defer></script>
 <script src="/uv/uv.bundle.js" defer></script>
 <script src="/uv/uv.config.js" defer></script>
 <script src="/register-sw.js" defer></script>
@@ -432,4 +435,10 @@ function isUrl(val = '') {
 
     }
     setTimeout(fade,1200);
+</script>
+<script>
+    // Show a hint when the proxy (bare) server is offline
+    window.addEventListener("load", function(){
+        if (window.DMiPad) DMiPad.checkProxy();
+    });
 </script>
